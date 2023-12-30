@@ -6,7 +6,7 @@
  */
 
 import express from "express";
-import stDecoder from "string_decoder";
+import { StringDecoder } from "string_decoder";
 
 const app = express();
 const port = 5000;
@@ -15,9 +15,18 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 app.post("/", (req, res) => {
-  req.on("data", (buffer) => {
-    const data = new stDecoder.StringDecoder(buffer);
-    console.log(data);
+  const decoder = new StringDecoder("utf-8");
+
+  let decodedData: string = "";
+
+  req.on("data", (buffer: Buffer) => {
+    decodedData += decoder.write(buffer);
+  });
+  req.on("end", (buffer: Buffer) => {
+    decodedData += decoder.end(buffer);
+
+    console.log(decodedData);
+    res.send(decodedData);
   });
 });
 
