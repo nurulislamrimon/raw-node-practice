@@ -1,3 +1,10 @@
+/**
+ * Title: Node Application
+ * Description: This Application is for practice core modules
+ * Author: Nurul Islam Rimon
+ * Date: 2023-12-30 20:35:04
+ */
+
 import express from "express";
 
 const app = express();
