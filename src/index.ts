@@ -6,6 +6,7 @@
  */
 
 import express from "express";
+import stDecoder from "string_decoder";
 
 const app = express();
 const port = 5000;
@@ -15,7 +16,8 @@ app.get("/", (req, res) => {
 });
 app.post("/", (req, res) => {
   req.on("data", (buffer) => {
-    console.log(buffer);
+    const data = new stDecoder.StringDecoder(buffer);
+    console.log(data);
   });
 });
 
