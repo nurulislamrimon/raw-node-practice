@@ -20,7 +20,7 @@ lib.create = (dir: string, file: string, data: string, cb: Function) => {
           }
         });
       } else {
-        cb("Couldn't create new file, it may already exist!");
+        cb(err);
       }
     }
   );

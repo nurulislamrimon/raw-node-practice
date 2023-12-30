@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { StringDecoder } from "string_decoder";
+import { lib } from "../../lib/data";
 
 const createFsService = (req: Request, res: Response) => {
   const decoder = new StringDecoder("utf-8");
@@ -12,7 +13,9 @@ const createFsService = (req: Request, res: Response) => {
 
   req.on("end", (buffer: Buffer) => {
     decodedData += decoder.end(buffer);
-    res.send(decodedData);
+    lib.create("test", "newFile", { name: "Bangladesh" }, (err: string) => {
+      console.log(err);
+    });
   });
 };
 
