@@ -1,9 +1,8 @@
 import { RequestHandler } from "express";
+import fsServices from "./services.fs";
 
 const createFsController: RequestHandler = (req, res) => {
-  //   const data = fsServices.createFsService(req);
-
-  res.send("data");
+  fsServices.createFsService(req, res);
 };
 
 export default { createFsController };
