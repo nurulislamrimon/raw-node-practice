@@ -7,9 +7,12 @@
 
 import express from "express";
 import { mainRouter } from "./routes/router";
+import { logFunc } from "./utils/log";
 
 const app = express();
 const port = 5000;
+
+logFunc(process.env.NODE_ENV);
 
 app.use("/", mainRouter);
 app.listen(port, () => {
