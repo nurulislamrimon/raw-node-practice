@@ -13,7 +13,7 @@ const createFsService = (req: Request, res: Response) => {
 
   req.on("end", (buffer: Buffer) => {
     decodedData += decoder.end(buffer);
-    lib.create("test", "newFile", { name: "Bangladesh" }, (err: string) => {
+    lib.create("test", "newFile", decodedData, (err: string) => {
       console.log(err);
     });
   });

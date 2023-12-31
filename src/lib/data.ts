@@ -8,13 +8,15 @@ lib.baseDir = path.join(__dirname, "../../.data/");
 lib.create = (dir: string, file: string, data: any, cb: Function) => {
   fs.open(
     lib.baseDir + dir + "/" + file + ".json",
-    "wx",
+    "w",
     (err, fileDescriptor) => {
       if (!err && fileDescriptor) {
         const stringData = JSON.stringify(data);
+        console.log(fileDescriptor);
+
         fs.writeFile(fileDescriptor, stringData, (err) => {
           if (!err) {
-            cb("Success");
+            cb("Successfully added!");
           } else {
             cb(err);
           }
