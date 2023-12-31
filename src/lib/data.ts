@@ -51,19 +51,25 @@ lib.update = (dir: string, file: string, data: any, cb: Function) => {
     if (!err && fd) {
       const stringData = JSON.stringify(data);
 
-      // fs.truncate(fd, (err) => {
-      if (!err) {
-        fs.writeFile(fd, stringData, (err) => {
-          if (err) {
-            cb(err);
-          } else {
-            cb("File updated successfully!");
-          }
-        });
-      } else {
-        cb(err);
-      }
-      // });
+      fs.truncate(fd, (err) => {
+        if (!err) {
+          fs.writeFile(fd, stringData, (err) => {
+            if (err) {
+              cb(err);
+            } else {
+              fs.close(fd, (err) => {
+                if (err) {
+                  cb(err);
+                } else {
+                  cb("File updated successfully!");
+                }
+              });
+            }
+          });
+        } else {
+          cb(err);
+        }
+      });
     } else {
       cb(err);
     }
