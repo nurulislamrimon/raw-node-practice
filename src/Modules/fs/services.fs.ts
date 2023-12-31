@@ -18,7 +18,21 @@ const createFsService = (req: Request, res: Response) => {
     });
   });
 };
+const readFsService = (res: Response) => {
+  return lib.read(
+    "test",
+    "newFile",
+    (err: NodeJS.ErrnoException, data: string) => {
+      if (err) {
+        res.send({ success: false, err });
+      } else {
+        res.send({ success: true, data });
+      }
+    }
+  );
+};
 
 export default {
   createFsService,
+  readFsService,
 };
