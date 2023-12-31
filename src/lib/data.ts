@@ -3,9 +3,9 @@ import path from "path";
 
 export const lib: Record<string, any> = {};
 
-lib.baseDir = path.join(__dirname, "../.data/");
+lib.baseDir = path.join(__dirname, "../../.data/");
 
-lib.create = (dir: string, file: string, data: string, cb: Function) => {
+lib.create = (dir: string, file: string, data: any, cb: Function) => {
   fs.open(
     lib.baseDir + dir + "/" + file + ".json",
     "wx",
@@ -14,9 +14,9 @@ lib.create = (dir: string, file: string, data: string, cb: Function) => {
         const stringData = JSON.stringify(data);
         fs.writeFile(fileDescriptor, stringData, (err) => {
           if (!err) {
-            cb(false);
+            cb("Success");
           } else {
-            cb("Error closing the new file!");
+            cb(err);
           }
         });
       } else {

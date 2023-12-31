@@ -12,8 +12,6 @@ import { logFunc } from "./utils/log";
 const app = express();
 const port = 5000;
 
-logFunc(process.env.NODE_ENV);
-
 app.use("/", mainRouter);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
