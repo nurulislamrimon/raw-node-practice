@@ -29,5 +29,19 @@ const updateFsController: RequestHandler = (req, res) => {
     }
   });
 };
+const deleteFsController: RequestHandler = (req, res) => {
+  fsServices.deleteFsService((err: string | NodeJS.ErrnoException) => {
+    if (typeof err === "string") {
+      res.send({ success: true, data: err });
+    } else {
+      res.send({ success: false, err });
+    }
+  });
+};
 
-export default { createFsController, readFsController, updateFsController };
+export default {
+  createFsController,
+  readFsController,
+  updateFsController,
+  deleteFsController,
+};

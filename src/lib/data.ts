@@ -79,3 +79,16 @@ lib.update = (dir: string, file: string, data: any, cb: Function) => {
     }
   );
 };
+
+// ==============================================
+// ================= delete file ==================
+// ==============================================
+lib.delete = (dir: string, file: string, cb: Function) => {
+  fs.unlink(lib.baseDir + dir + "/" + file + ".json", (err) => {
+    if (err) {
+      cb(err);
+    } else {
+      cb("File deleted successfully!");
+    }
+  });
+};

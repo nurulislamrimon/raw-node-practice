@@ -6,3 +6,4 @@ export const fsRouter = express.Router();
 fsRouter.post("/", fsController.createFsController);
 fsRouter.get("/", fsController.readFsController);
 fsRouter.put("/", fsController.updateFsController);
+fsRouter.delete("/", fsController.deleteFsController);

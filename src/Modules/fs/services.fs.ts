@@ -35,8 +35,12 @@ const updateFsService = (req: Request, cb: Function) => {
     lib.update("test", "newFile", decodedData, cb);
   });
 };
+const deleteFsService = (cb: Function) => {
+  lib.delete("test", "newFile", cb);
+};
 export default {
   createFsService,
   readFsService,
   updateFsService,
+  deleteFsService,
 };
